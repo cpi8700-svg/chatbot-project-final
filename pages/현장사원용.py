@@ -21,8 +21,8 @@ except Exception as e:
     st.error(f"API 키 설정 중 오류가 발생했습니다: {e}")
     st.stop()
 
-# 챗봇 설정 (모델을 'gemini-pro'로 변경했습니다!)
-model = genai.GenerativeModel('gemini-pro')
+# 챗봇 설정 (모델을 'gemini-3-flash-preview'로 변경했습니다!)
+model = genai.GenerativeModel('gemini-3-flash-preview')
 
 # --- [3. 채팅 화면 만들기] ---
 st.info("💡 래딕스에 대해 궁금한 것을 물어보세요!")
