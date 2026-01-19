@@ -2,13 +2,13 @@ import streamlit as st
 
 st.set_page_config(page_title="사내 교육 챗봇 포털", page_icon="🏢")
 
-st.title("🏢 사내 교육/안전 가이드 챗봇")
+st.title("🏢 래딕스 가이드 챗봇")
 st.write("---")
 st.subheader("👋 환영합니다.")
 st.write("왼쪽 사이드바에서 원하는 메뉴를 선택하세요.")
 
 st.info("""
-- **👮 관리자용:** 안전 매뉴얼, 제품 교육 자료 등을 업로드하고 학습시킵니다.
+- **👮 관리자용:** 제품 교육 자료 등을 업로드하고 학습시킵니다.
 - **👷 현장사원용:** 학습된 AI에게 업무 관련 질문을 합니다.
 """)
 
