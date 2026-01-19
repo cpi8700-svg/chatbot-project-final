@@ -7,17 +7,31 @@ import time
 st.set_page_config(page_title="관리자 페이지", page_icon="👮")
 st.title("👮 자료 학습 및 관리")
 
-# API 키 확인
-if "api_key" not in st.session_state or not st.session_state["api_key"]:
-    st.warning("메인 페이지(Main.py)에서 API 키를 먼저 입력해주세요.")
-    st.stop()
+# --- [1. 문지기: 비밀번호 확인] ---
+# 비밀번호를 "1234"로 설정했습니다. 원하시는 번호로 바꾸세요.
+admin_password = st.text_input("🔒 관리자 비밀번호를 입력하세요", type="password")
 
+if admin_password != "2119":  # <-- 여기 "1234"를 원하는 비밀번호로 바꾸세요!
+    st.error("비밀번호가 일치하지 않습니다. 관리자만 접근 가능합니다.")
+    st.stop()  # ⛔ 비밀번호 틀리면 여기서 코드 실행을 멈춤! (밑에 내용 안 보여줌)
+
+# --- [2. API 키 확인] ---
+if "api_key" not in st.session_state or not st.session_state["api_key"]:
+    st.warning("⚠️ 메인 페이지(Main.py)에서 API 키가 로드되지 않았습니다.")
+    # (선택) 만약 관리자 페이지에서도 바로 키를 끌어오고 싶다면 Secrets를 확인
+    if "GOOGLE_API_KEY" in st.secrets:
+        st.session_state["api_key"] = st.secrets["GOOGLE_API_KEY"]
+    else:
+        st.stop()
+
+# --- [3. 진짜 관리자 기능 시작] ---
 genai.configure(api_key=st.session_state["api_key"])
 
 # 세션 초기화
 if "uploaded_files_cache" not in st.session_state:
     st.session_state["uploaded_files_cache"] = []
 
+st.success("✅ 관리자 인증 완료! 자료를 업로드하세요.")
 st.write("### 📂 학습할 문서 업로드")
 st.caption("안전 매뉴얼, 제품 가이드 등 여러 개의 PDF를 한 번에 올릴 수 있습니다.")
 
